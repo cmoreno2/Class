@@ -10,22 +10,37 @@ string? resp = Console.ReadLine();
 if (resp == "1")
 {
     StreamWriter sw = new StreamWriter(file, append: true);
-    // for (int i = 0; i < 7; i++)
-    // {
-    //     Console.WriteLine("Enter Movie(Y/N)?");
-        // input the response
-        // string NewMovieChoice = Console.ReadLine().ToUpper();
-        // if the response is anything other than "Y", stop asking
-        // if (NewMovieChoice != "Y") { break; }
-            Console.WriteLine("Enter Movie ID");
-            int MovieID = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Give Movie Title");
-            string? MovieTitle = Console.ReadLine();
-
-            Console.WriteLine("Give Movie Genre(s)");
-            string? Genre = Console.ReadLine();
-        
+        //Asking for MovieID
+        Console.WriteLine("Enter MovieID");
+        int MovieID;
+            //Ensureing that MovieId is an int
+            try
+            {
+                MovieID = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (System.Exception)
+            {
+                throw new Exception("Input for MovieID must be a number");
+            }
+            
+        //Asking for Movie Title
+        Console.WriteLine("Give Movie Title");
+        string? MovieTitle = Console.ReadLine();
+            //Ensuring that a movie title is submitted and not left blank
+            bool MovieTitleNull = String.IsNullOrEmpty(MovieTitle);
+                if (MovieTitleNull is true)
+                {
+                    Console.WriteLine("You must enter a movie title.");
+                }
+        //Asking for Movie Genres
+        Console.WriteLine("Give Movie Genre(s)");
+        string? Genre = Console.ReadLine();
+            //If Movie Genre is left blank a sentinal value is allocated
+            bool GenreCheck = String.IsNullOrEmpty(Genre);
+                if (GenreCheck is true)
+                    {
+                        Genre = "(no genres listed)";
+                    }
             sw.WriteLine("{0},{1},{2}", MovieID, MovieTitle, Genre);
     // }
     sw.Close();
