@@ -22,16 +22,15 @@ if (resp == "1")
             {
                 throw new Exception("Input for MovieID must be a number");
             }
-            
-        //Asking for Movie Title
-        Console.WriteLine("Give Movie Title");
-        string? MovieTitle = Console.ReadLine();
-            //Ensuring that a movie title is submitted and not left blank
-            bool MovieTitleNull = String.IsNullOrEmpty(MovieTitle);
-                if (MovieTitleNull is true)
-                {
-                    Console.WriteLine("You must enter a movie title.");
-                }
+        
+        string? MovieTitle = "";
+        while (String.IsNullOrEmpty(MovieTitle))
+        {
+            //Asking for Movie Title
+            Console.WriteLine("Give Movie Title");
+            MovieTitle = Console.ReadLine();
+        }
+        
         //Asking for Movie Genres
         Console.WriteLine("Give Movie Genre(s)");
         string? Genre = Console.ReadLine();
